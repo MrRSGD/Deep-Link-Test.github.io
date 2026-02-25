@@ -2,12 +2,22 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Redirect</title>
+    <title>Redirecting...</title>
 </head>
 <body>
 
 <script>
-    window.location.href = "xenobula://open?num=123";
+    const params = new URLSearchParams(window.location.search);
+    const num = params.get("num");
+
+    const deepLink = "xenobula://open?num=" + encodeURIComponent(num);
+    const fallback = "https://example.com"; 
+
+    window.location.href = deepLink;
+
+    setTimeout(function () {
+        window.location.href = fallback;
+    }, 1500);
 </script>
 
 </body>
